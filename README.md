@@ -1,4 +1,4 @@
-# Discord Bot Template — Games + Watermark (per user)
+# Discord Bot Template — Watermark photos
 
 Template Node.js basé sur **discord.js v14**.
 
@@ -12,13 +12,10 @@ Template Node.js basé sur **discord.js v14**.
 - `/setmargin` : marge en pixels
 - `/setposition` : position (`northwest`, `northeast`, `southwest`, `southeast`, `center`)
 - `/setchannels` : liste d’IDs de salons autorisés
-- Mode **auto** : si tu postes une image dans un salon autorisé, le bot renvoie une version watermarkée.
+- Mode **auto** : si vous postez une image dans un salon autorisé, le bot renvoie une version watermarkée.
 
 > Pour l’instant: **watermark par utilisateur** (chaque user a son propre logo).  
 > On pourra ajouter un mode “logo global serveur” plus tard éventuellement.
-
-### 🎵 Musique (plus tard)
-Scaffold Lavalink présent mais **désactivé par défaut** (`ENABLE_LAVALINK=false`).
 
 ---
 
@@ -35,7 +32,7 @@ npm install
 cp .env.example .env
 ```
 
-Renseigne dans `.env` :
+Renseigner dans `.env` :
 - `DISCORD_TOKEN`
 - `DISCORD_CLIENT_ID`
 - `GUILD_ID`
@@ -63,7 +60,7 @@ npm start
 ```bash
 cp .env.example .env
 ```
-Renseigne les variables dans `.env` (DISCORD_TOKEN, etc.).
+Renseigner les variables dans `.env` (DISCORD_TOKEN, etc.).
 
 ### 2) Construire et lancer
 ```bash
@@ -99,11 +96,11 @@ La solution simple et robuste est de **déposer** les images à traiter dans un 
   2. postent des images dans `#watermark`
   3. le bot répond avec les images watermarkées
 
-Tu peux aussi créer des **threads** sous ce salon : ils sont acceptés si leur salon parent est dans `WATERMARK_CHANNEL_IDS`.
+Vous pouvez aussi créer des **threads** sous ce salon : ils sont acceptés si leur salon parent est dans `WATERMARK_CHANNEL_IDS`.
 
 ### Commandes slash (détails rapides)
-Utilise ces commandes dans un serveur où le bot est présent :
-- `/setlogo` : envoie une image en pièce jointe pour définir ton logo (une seule fois, remplaçable si tu relances la commande).
+Utiliser ces commandes dans un serveur où le bot est présent :
+- `/setlogo` : envoie une image en pièce jointe pour définir ton logo (une seule fois, remplaçable si vous relancez la commande).
 - `/getconfig` : affiche ta config actuelle (opacité, échelle, marge, position, salons autorisés).
 - `/setopacity <0.0-1.0>` : règle la transparence du logo.
 - `/setscale <0.05-1.0>` : ajuste la taille du logo.
@@ -111,7 +108,7 @@ Utilise ces commandes dans un serveur où le bot est présent :
 - `/setposition <northwest|northeast|southwest|southeast|center>` : place le logo.
 - `/setchannels <ids>` : définit les salons autorisés (IDs séparés par des espaces ou des virgules).
 
-Astuce : si un paramètre ne te convient pas, relance simplement la commande concernée pour le modifier.
+Astuce : si un paramètre ne vous convient pas, relancez simplement la commande concernée pour le modifier.
 
 Sortie `getconfig` (exemple) :
 ```text
@@ -148,14 +145,13 @@ Non gérés (actuellement) :
 - Read Message History (recommandé)
 - Use Slash Commands
 - Send Messages in Threads
-- Create Public Threads (si tu veux créer/écrire dans des threads)
+- Create Public Threads (si vous voulez créer/écrire dans des fils de discussion)
 
 > Pour le mode auto watermark, le bot a besoin de voir les messages et leurs pièces jointes dans le salon ciblé.
 
 ### Intents
 Le bot utilise :
 - `Guilds`
-- `GuildVoiceStates` (préparé pour musique plus tard)
 - `GuildMessages` (pour watermark auto)
 
 ✅ **Message Content Intent** est requis pour recevoir correctement les events et pièces jointes.
@@ -163,10 +159,10 @@ Le bot utilise :
 ---
 
 ## Dépannage rapide
-- Commandes slash invisibles: relance `npm run register` et vérifie `GUILD_ID`
+- Commandes slash invisibles: relancez `npm run register` et vérifiez `GUILD_ID`
 - Bot en ligne mais pas de watermark:
   - `ENABLE_WATERMARK=true`
   - `WATERMARK_CHANNEL_IDS` correct
-  - tu as fait `/setlogo`
+  - vous avezs fait `/setlogo`
   - l’image est en JPG/PNG/WebP
   - le bot a bien accès au salon (et aux threads)

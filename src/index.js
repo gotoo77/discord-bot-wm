@@ -35,7 +35,7 @@ client.once('clientReady', async () => {
   LOGI(`Logged in as ${client.user.tag}`);
   LOGD(`Watermark ${state.wm.enabled ? 'enabled' : 'disabled'} (mode=${state.wm.mode}).`);
   LOGI('Bot ready.');
-  LOGW('Si tu n’as pas encore enregistré les commandes slash: npm run register');
+  LOGW('if you did not registered slash commands ("/xxxxx") yet: npm run register');
 });
 
 client.on('messageCreate', (message) => {
@@ -62,7 +62,7 @@ client.on('interactionCreate', async (interaction) => {
     LOGI(`CMD /${commandName} executed successfully`);
   } catch (e) {
     LOGE(`CMD /${commandName} failed: ${e?.stack ?? e}`);
-    const payload = { content: '❌ Erreur côté bot.', ephemeral: true };
+    const payload = { content: '❌ Error on bot side.', ephemeral: true };
     if (interaction.replied || interaction.deferred) await interaction.followUp(payload);
     else await interaction.reply(payload);
   }
